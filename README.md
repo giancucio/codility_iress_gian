@@ -23,7 +23,7 @@ terraform init
 ```
 terraform apply
 ```
-2. Configure kubectl and Deploy Kubernetes Dashboad with Metrics Server
+2. Configure kubectl and Deploy Kubernetes Dashboad with Metrics Server for Observability
 ```
 aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output -raw cluster_name)
 ```
