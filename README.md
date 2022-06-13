@@ -19,25 +19,41 @@ Prerequisites
 1. Create Cluster
 ```
 terraform init
+```
+```
 terraform apply
 ```
 2. Configure kubectl and Deploy Kubernetes Dashboad with Metrics Server
 ```
 aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output -raw cluster_name)
+```
+```
 wget -O v0.3.6.tar.gz https://codeload.github.com/kubernetes-sigs/metrics-server/tar.gz/v0.3.6 && tar -xzf v0.3.6.tar.gz
+```
+```
 kubectl apply -f metrics-server-0.3.6/deploy/1.8+/
+```
+```
 kubectl get deployment metrics-server -n kube-system
+```
+```
 kubectl apply -f recommended.yaml
+```
+```
 kubectl proxy
 ```
 3. Authenticate Kubernetes Dashboard (Execute on a different terminal) (Get token and apply in the Dashboard)
 ```
 kubectl apply -f kubernetes-dashboard-admin.rbac.yaml
+```
+```
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep service-controller-token | awk '{print $1}')
 ```
 4. Deploy Helloworld Image
 ```
 kubectl apply -f helloworld.yaml
+```
+```
 kubectl apply -f helloworld-service.yaml
 ```
 5. Get Details of Running Helloworld Container
